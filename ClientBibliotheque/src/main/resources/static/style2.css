@@ -1,0 +1,270 @@
+/* Header*/
+
+header {
+	font-family: Arial;
+}
+
+header nav {
+	color: gray;
+}
+
+header nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+header nav ul li {
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 200px;
+	height: 40px;
+	background-color: rgba(0, 0, 0, 0.8);
+	line-height: 40px;
+	text-align: center;
+}
+
+header nav ul li a {
+	display: block;
+}
+
+header nav ul li a:hover {
+	background-color: gray;
+	opacity: 0.5;
+}
+
+header nav ul li ul li {
+	display: none;
+} 
+
+header nav ul li:hover ul li{
+	display: block;
+}
+
+/* Image principale */
+
+#image-principale 
+{
+    height: 580px;
+    background: url('main.jpg') center;
+}
+
+#image-principale h2
+{
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 150px 0 40px 0;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.boutton1
+{
+    display: block;
+    width: 120px;
+    height: 50px;
+    background: #808080;
+    color: #fff;
+    font-size: 20px;
+    margin: 0 auto;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.boutton1:hover
+{
+    background: #02b8dd;
+}
+
+/* possibilités */
+
+#possibilités
+{
+    background-color: #efefef;
+    padding: 60px 0;
+}
+
+#possibilités article
+{
+    width: 460px;
+    height: 270px;
+    float: left;
+    border-radius: 10px;
+}
+
+#possibilités article:first-child 
+{
+    margin-right: 20px;
+}
+
+.pos1
+{
+    background: rgba(151, 154, 154, 0.95);
+    height: 100%;
+    width: 190px;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+}
+
+article h4
+{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+
+#possibilités p
+{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.boutton2
+{
+    color: #fff;
+    background-color: #ff7a00;
+    padding : 6px 20px;
+    border-radius: 3px;
+}
+
+.boutton2:hover
+{
+    background-color: #02b8dd
+}
+
+
+
+
+
+#possibilités1
+{
+    background-color: #FF5733;
+    padding: 60px 0;
+}
+
+#possibilités1 article
+{
+    width: 460px;
+    height: 270px;
+    float: left;
+    border-radius: 10px;
+}
+
+#possibilités1 article:first-child 
+{
+    margin-right: 20px;
+}
+
+.pos11
+{
+   background: rgba(255, 87, 51, 0.95);
+    height: 100%;
+    width: 190px;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+}
+
+article1 h4
+{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+
+#possibilités1 p
+{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.boutton22
+{
+    color: #fff;
+    background-color: #ff7a00;
+    padding : 6px 20px;
+    border-radius: 3px;
+}
+
+.boutton22:hover
+{
+    background-color: #02b8dd
+}
+
+
+
+/* partie */
+
+#parties ul 
+{
+    margin: 80px 0;
+}
+
+#parties ul li
+{
+    width: 300px;
+    float: left;
+    padding-top: 140px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+#parties h4
+{
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+#parties p 
+{
+    margin-bottom: 20px;
+}
+
+#partie1
+{
+    background: url('steps-icon-1.png') no-repeat top center;
+}
+
+#partie2
+{
+    background: url('steps-icon-2.png') no-repeat top center;
+}
+
+#partie3
+{
+    background: url('steps-icon-3.png') no-repeat top center;
+}
+
+
+/* footer */
+
+footer
+{
+    height: 260px;
+    background-color: #444;
+}
+
+footer h1 
+{
+    color: #fff;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.copyright
+{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 30px;
+    color: #777;
+}
