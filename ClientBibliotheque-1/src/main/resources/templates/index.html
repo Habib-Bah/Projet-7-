@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato'
+	rel='stylesheet' type='text/css'>
+<link href="style2.css" rel="stylesheet">
+<title>Page d'acceuil</title>
+</head>
+
+
+<header>
+	<nav>
+		<ul>
+			<li><a>Acceuil</a>
+				<ul>
+					<li><a th:href="@{/Employe}">Espace Employé</a></li>
+					<li><a th:href="@{/Horaire}">Horaires</a></li>
+					<li><a>Nous Contacter</a></li>
+				</ul></li>
+
+			<li><a>Catalogue</a>
+				<ul>
+				    <li><a th:href="@{/Livre}">Les livres</a></li>
+					<li><a th:href="@{/Roman}"> Romans</a></li>
+					<li><a th:href="@{/Science}">Sciences</a></li>
+					<li><a th:href="@{/Droit}">Droits</a></li>
+					<li><a th:href="@{/Economie}">Economie</a></li>
+				</ul></li>
+			<li><a>Jeunesse</a>
+				<ul>
+					<li><a th:href="@{/Musique}">Musique</a></li>
+					<li><a th:href="@{/Sport}">Sport</a></li>
+				</ul></li>
+			<li><a th:href="@{/Inscription}">Inscription</a></li>
+			<li><a th:href="@{/Connexion}">Connexion</a></li>
+
+
+
+		</ul>
+	</nav>
+</header>
+<body>
+
+	<section id="image-principale">
+		<h2>
+			Votre Bibliothèque <br> <strong> En un click </strong>
+		</h2>
+		<a href="#" class="boutton1"> Par ici</a>
+	</section>
+
+
+	<section id="possibilités">
+		<div class="conteneur">
+			<article style="background-image: url('ims3.jpeg')">
+				<div class="pos1">
+					<h4>PATRIMOINE</h4>
+					<p>
+						<small>Découvrez dans une sélection de catalogues
+							commerciaux numérisés par la bibliothèque quelques ingrédients
+							pour une ouverture de boutique réussie. </small>
+					</p>
+				<!--  <a href="#" class="boutton2"> Plus d'infos </a> -->
+				</div>
+			</article>
+
+			<article style="background-image: url('ims1.jpeg')">
+				<div class="pos1">
+					<h4>Berlioz : 5 oeuvres à redécouvrir</h4>
+					<p>
+						<small> A l'occasion des 150 ans de la mort d'Hector Berlioz, <br>
+						redécouvrez 5 oeuvres majeures du compositeur, <br>
+						à écouter et à emprunter en bibliothèque. <br>
+						</small>
+					</p>
+				<!--  <a href="#" class="boutton2"> Plus d'infos </a> -->
+				</div>
+			</article>
+			<div class="clear"></div>
+		</div>
+	</section>
+
+
+	<section id="recommandations">
+		<div class="container">
+			<div class="red-divider"></div>
+			<div class="heading">
+				<h2>Divers</h2>
+			</div>
+			<div id="myCarousel" class="carousel slide text-center"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<h3>Je ne trouve pas ce que je cherche</h3>
+						<h4>Je demande à un bibliothécaire</h4>
+					</div>
+					<div class="item">
+						<h3>Un conseil de film ou serie</h3>
+						<h4>Je demande à un bibliothécaire</h4>
+					</div>
+					<div class="item">
+						<h3>Un conseil de livre ou de BD</h3>
+						<h4>Je demande à un bibliothécaire</h4>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#myCarousel"
+					data-slide="prev" role="button"> <span
+					class="glyphicon glyphicon-chevron-left"></span>
+				</a> <a class="right carousel-control" href="#myCarousel"
+					data-slide="next" role="button"> <span
+					class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+
+			</div>
+
+		</div>
+
+
+	</section>
+
+	<section id="parties">
+		<div class="conteneur">
+			<ul>
+				<li id="partie1">
+					<h4>Au courant des nouveautés</h4>
+					<p>
+						cabonnez-vous à nos <br> newsletters d'informations<br>
+						speciales
+					</p>
+				</li>
+
+				<li id="partie2">
+					<h4>Les alertes nouveautés</h4>
+					<p>
+						Recevez toutes les dernières<br> acquisitions du résau
+						bibliothèque<br> ddirectement dans votre boite mail !
+					</p>
+				</li>
+
+				<li id="partie3">
+					<h4>Les alertes coup de cœur</h4>
+					<p>
+						recevez les coups de cœur<br> et de de nos bibliothécaires<br>
+					</p>
+				</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+	</section>
+
+	<section id="possibilités1">
+		<div class="conteneur">
+			<article style="background-image: url('ims2.jpeg')">
+				<div class="pos11">
+					<h4>Besoin d'aide pour réviser ?</h4>
+					<p>
+						<small>Le temps des examens de fin d'année approche ! <br>
+						 Pour vous aider à réviser, découvrez nos conseils, <br>
+						 entre ressources en ligne, soutien scolaire <br>
+						 interactif et accueil spécifique en bibliothèque !.<br> </small>
+					</p>
+					<!--  <a href="#" class="boutton22"> Plus d'infos </a> -->
+				</div>
+			</article>
+
+			<article style="background-image: url('ims4.jpeg')">
+				<div class="pos11">
+					<h4>DE LA LECTURE AUSSI DU CÔTÉ DES BIBLIO-BLOGS</h4>
+					<p>
+						<small> Suivez nos blogs, véritables sources <br>
+						d'informations sur les bibliothèques !<br> 
+						</small>
+					</p>
+					<!--  <a href="#" class="boutton22"> Plus d'infos </a> -->
+				</div>
+			</article>
+			<div class="clear"></div>
+		</div>
+	</section>
+
+
+</body>
+</html>

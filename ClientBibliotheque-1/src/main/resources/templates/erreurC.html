@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link href="style.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<title>Connexion</title>
+</head>
+<body>
+
+    <div class="container">
+        
+        <p>Les idenfiants que vous avez choisi son incorrects </p>
+        <p>Veuillez entrer des identifiants corrects </p>
+        
+        <p>Veuillez contacter votre bibliothèque ou entrer d'autres identifiants.
+        
+        <a th:href="@{/Connexion}"> Connectez - vous</a>
+        
+            <p>Pas encore de compte ?
+            <a th:href="@{/Inscription}"> Inscrivez - vous</a>
+
+           
+    </div>
+</body>
+</html>

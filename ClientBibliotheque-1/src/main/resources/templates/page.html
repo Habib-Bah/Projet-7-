@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="style.css" rel="stylesheet">
+<title>Liste des livres</title>
+</head>
+
+<body>
+     <header>
+         <div class="conteneur">
+             <h1> Bienvenue <samp class="point-orange">.</samp> </h1>
+             <nav>
+                 <ul>
+                   <!--    <li><a th:href="@{/Reservation}"> Vos reservations</a> </li> -->
+                     <li><a th:href="@{/Prolonger}"> Prolonger un pret</a> </li>
+                     <li><a th:href="@{/Deconnection}"> Deconnection</a> </li>                 
+                 </ul>
+             </nav>
+         </div>
+     </header>
+<section id="contact">
+         <div class="conteneur">
+             <h3> Recherche rapide </h3>
+             <p>Trouver rapidement votre livre
+             <form th:action="@{find}" method="POST">
+                 <label class="control-label"> Titre du livre </label>
+                 <input type="text" id="mail" placeholder="Entrer le titre du livre">
+                 
+                 <a th:href="@{/Recherche}" class="boutton2"> Recherche</a>
+             </form>
+         </div>
+     </section>
+<section id="possibilités">
+		<div class="conteneur">
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>Les fous du roi</h4>
+					<p>
+						<small> Robert penn warren<br> 7 critiques
+							8 citations<br>10 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/lesfousduroi}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>Là-bas</h4>
+					<p>
+						<small> Joris-Karl Huysmans<br> le
+							26 critiques 80 citations<br>15 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/labas}" class="boutton2"> Reserver</a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>Faust</h4>
+					<p>
+						<small> Johann Wolfgang<br> 55 critiques
+							185 citations<br>8 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/faust}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>Un tramway nommé Désir</h4>
+					<p>
+						<small> Tenessee Williams<br> 27
+							critiques 35 citations<br>7 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/untramway}"class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>La peste</h4>
+					<p>
+						<small> Albert Camus<br> 190 critiques
+							578 citation<br>15 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/lapeste}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>La vie devant soit</h4>
+					<p>
+						<small> Romain Gary<br>
+							369 critiques 625 citations<br>7 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/laviedevantsoit}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>Cryno de Bergerac</h4>
+					<p>
+						<small> Edmon Rostand<br> 281
+							critiques 383 citations<br>16 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/cyrano}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>La metamorphose</h4>
+					<p>
+						<small> Franz Kafka<br>250
+							critiques 87 citations<br>10 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/lametamorphose}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>Le seigneur des anneaux</h4>
+					<p>
+						<small> J.R.R Tolkien<br> 93 critiques
+							69 citations<br>15 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/leseigneurdesanneaux}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>L'Etranger</h4>
+					<p>
+						<small> Albert Camus<br> le
+							612 critiques 595 citations<br>15 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/letranger}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>1984</h4>
+					<p>
+						<small> George Orwell<br> 653
+							critiques 779 citations<br>12 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/1984}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>Lecume des jours</h4>
+					<p>
+						<small> George Orwell<br>
+							460 critiques 408 citations<br>13 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/ecume}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>Jane Eyre</h4>
+					<p>
+						<small> Charlotte Bronte<br>521
+						critiques 659 citations <br>13 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/jane}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>Mrs Dalloway</h4>
+					<p>
+						<small> Virginia Woolf<br> le
+							173 critiques 248 citation<br>15 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/dalloway}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4>De Sang Froid</h4>
+					<p>
+						<small> Trunan Capote<br>150 critiques 
+							90 citations<br>10 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/sangfroid}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+
+			<article style="background-image: url('article-image-2.jpg')">
+				<div class="pos1">
+					<h4>American psycho</h4>
+					<p>
+						<small>Brest Easton ellis<br> le
+							208 critiques 66 citations<br>10 exemplaires
+						</small>
+					</p>
+					<a th:href="@{/psycho}"  class="boutton2"> Reserver </a>
+				</div>
+			</article>
+			
+			<div class="clear"></div>
+		</div>
+	</section>
+
+</body>
+</html>

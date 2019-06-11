@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link href="style.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<title>Vos reservation</title>
+</head>
+<body>
+
+    <div class="container">
+        
+        <p>Entrez votre email pour touvez vos reservations: </p>
+        <form th:action="@{findReservation}" method="POST">
+
+             <div class="col-md-6 col-sm-6 col-xs-12">
+            
+            <div class="form-group">
+                <label class="control-label"> email: </label>
+                <input class="form-control" type="text" name="email" th:value="${reservation.email}"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary"> Trouver </button>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

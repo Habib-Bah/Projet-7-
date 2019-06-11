@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="style.css" rel="stylesheet">
+<title>Liste des livres</title>
+</head>
+
+<body>
+	<header>
+		<div class="conteneur">
+			<h1>
+				Bienvenue
+				<samp class="point-orange">.</samp>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/Reservation}"> Vos reservations</a></li>
+					<li><a th:href="@{/Prolonger}"> Prolonger un pret</a></li>
+					<li><a th:href="@{/Deconnection}"> Deconnection</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<section id="contact">
+		<div class="conteneur">
+			<h3>Recherche rapide</h3>
+			<p>Trouver rapidement votre livre
+			<form th:action="@{find}" method="POST">
+				<label class="control-label"> Titre du livre </label> <input
+					type="text" id="mail" placeholder="Entrer le titre du livre">
+
+				<a th:href="@{/Recherche}" class="boutton2"> Recherche</a>
+			</form>
+		</div>
+	</section>
+
+
+	<section id="possibilités">
+		<tr th:each="l:${listelivre}">
+			<div class="conteneur">
+				<article style="background-image: url('article-image-1.jpg')">
+					<div class="pos1">
+						<h4 th:text="${l.titre}"> </h4>
+						<p>
+							<small th:text="${l.auteur}"> </small> <br> 
+							<small th:text="${l.nombreexemplaire}">
+							</small>
+						</p>
+						<a th:href="@{/reserver}" class="boutton2"> Reserver </a>
+					</div>
+				</article>
+
+			</div>
+
+	</tr>	
+	</section>
+
+</body>
+</html>
