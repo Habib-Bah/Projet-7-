@@ -1,24 +1,26 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<link href="style.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-<title>Connexion</title>
+<title>Erreur</title>
+<link rel="stylesheet" type="text/css" href="style5.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="script.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Limelight'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lobster'
+	rel='stylesheet' type='text/css'>
 </head>
-<body>
-
-    <div class="container">
         
-        <p>Les idenfiants que vous avez choisi son incorrects </p>
-        <p>Veuillez entrer des identifiants corrects </p>
+        <h3>Les idenfiants que vous avez choisi son incorrects </h3>
+        <h3>Veuillez entrer des identifiants corrects </h3>
         
-        <p>Veuillez contacter votre bibliothèque ou entrer d'autres identifiants.
+        <h3>Ou contacter votre bibliothèque ou entrer d'autres identifiants.</h3>
         
         <a th:href="@{/Connexion}"> Connectez - vous</a>
         
-            <p>Pas encore de compte ?
-            <a th:href="@{/Inscription}"> Inscrivez - vous</a>
+            <p class="message">Pas encore de compte ?
+            <a th:href="@{/Inscription}"> Inscrivez - vous</a> </p>
 
            
     </div>

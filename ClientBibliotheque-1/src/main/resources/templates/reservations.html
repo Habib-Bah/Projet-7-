@@ -2,28 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
-<link href="style.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-<title>Vos reservation</title>
+<link href="style5.css" rel="stylesheet"/>
+<title>Reservation</title>
 </head>
 <body>
-
-    <div class="container">
-        
-        <p>Entrez votre email pour touvez vos reservations: </p>
-        <form th:action="@{findReservation}" method="POST">
-
-             <div class="col-md-6 col-sm-6 col-xs-12">
-            
-            <div class="form-group">
-                <label class="control-label"> email: </label>
-                <input class="form-control" type="text" name="email" th:value="${reservation.email}"/>
-            </div>
-
-            <button type="submit" class="btn btn-primary"> Trouver </button>
-
-            </div>
-        </form>
-    </div>
+    
+     <div class="login-page">
+		<div class="form">
+			<form class="register-form" th:action="@{findReservation}" method="POST">
+				<input type="text" placeholder="Votre email" name="email" th:value="${reservation.email}"/>
+				<button>Recherche</button>
+			</form>
+		</div>
+		
+	</div>
+    
 </body>
 </html>

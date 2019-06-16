@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link href="style5.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<title>Retour de pret</title>
+</head>
+<body>
+	<div class="login-page">
+		<div class="form">
+			<form class="register-form" th:action="@{ConfirmRetourDePret}" method="POST">
+				
+				<input type="text" placeholder="email" name="email" th:value="${retour.email}"/>
+				<button>Confirmer</button>
+			</form>
+		</div>
+		
+	</div>
+</body>
+</html>

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "livre", namespace = "http://web.service.biblio", propOrder = {
+@XmlType(name = "livre", namespace = "http://web.service.biblio2", propOrder = {
     "auteur",
     "categorie",
     "id",

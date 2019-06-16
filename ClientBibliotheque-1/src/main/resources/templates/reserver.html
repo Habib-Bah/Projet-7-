@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8"/>
+<link href="style5.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<title>Reservations</title>
 </head>
 <body>
+
+	 <div class="login-page">
+		<div class="form">
+			<form class="register-form" th:action="@{CReserver}" method="POST">
+			
+							
+				<input type="text" placeholder="titre du livre" name="titrelivre" th:value="${reservation.titrelivre}" list="datalist1"/>
+				<datalist id="datalist1">
+				<option value="Les fous du roi">
+				<option value="Là-bas">
+				<option value="Faust">
+				<option value="Un tramway nommé Désir">
+				<option value="La peste">
+				<option value="La vie devant soit">
+				<option value="Cryno de Bergerac">
+				<option value="La metamorphose">
+				<option value="Le seigneur des anneaux">
+				<option value="L'Etranger">
+				<option value="1984">
+				<option value="Lecume des jours">
+				<option value="Jane Eyre">
+				<option value="Mrs Dalloway">
+				<option value="De Sang Froid">
+				<option value="American psycho">
+				<option value="L'univers à portée de main">
+				<option value="Vertige du cosmos">
+				<option value="Liberez votre cerveau">
+				<option value="Tesla L'eclaire du genie">
+				
+				
+				<option value="Un autre regard sur le climat">
+				<option value="E=mc2 L'equation de tous les possibles">
+				<option value="Infravies, le vivant sans frontière">
+				<option value="Singe toi meme">
+				<option value="Les bugs humains">
+				<option value="Les origines de la géometrie">
+				<option value="Quand le cerveau devient masculin">
+				<option value="L'age des low tech">
+				<option value="Comprendre l'intelligence artificielle">
+				<option value="La guerre des intelligences">
+				
+				
+				</datalist>
+				<input type="text" placeholder="nom" name="nomutilisateur" th:value="${reservation.nomutilisateur}"/>
+				<input type="text" placeholder="prenom" name="prenom" th:value="${reservation.prenom}"/>
+				<input type="text" placeholder="email" name="email" th:value="${reservation.email}"/>
+				
+				<!--  
+				<p class="message">Pas encore de compte ?
+            <a th:href="@{/Inscription}"> Inscrivez - vous</a> </p>
+            -->
+            <button>Reserver</button>
+			</form>
+		</div>
+		
+	</div>
 
 </body>
 </html>

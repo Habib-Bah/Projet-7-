@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="style.css" rel="stylesheet">
+<title>Recherche livre</title>
+</head>
+<body>
+
+
+	<p>Voici le resultat de votre recherche</p>
+	
+	<section id="possibilités">
+		<div class="conteneur">
+			<article style="background-image: url('article-image-1.jpg')">
+				<div class="pos1">
+					<h4 th:text="${livre.titre}"></h4>
+					<p>
+						<small th:text="${livre.auteur}"> </small> <br> 
+							<small th:text="${livre.nombreexemplaire}">
+							</small>
+						</p>
+						<a th:href="@{/reserver}" class="boutton2"> Reserver </a>
+				</div>
+			</article>
+	
+	</div>
+	</section>
+</body>
+</html>

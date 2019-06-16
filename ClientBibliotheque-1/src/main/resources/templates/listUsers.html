@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link href="style5.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<title>Utilisateurst</title>
+<body>
+
+  <div class="container spacer">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nom</th> <th>Prenom</th><th>Email</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+	
+	  
+			<tr th:each="t:${listusers}">
+			<td th:text="${t.nom}"></td>
+			<td th:text="${t.prenom}"></td>
+			<td th:text="${t.email}"></td>
+			
+		 
+           <!--   <td>
+              	<a th:href="@{Site(nomsite=${t.nomsite})}">Partager</a> 
+            </td>-->
+			</tr>
+		</tbody>
+    </table>
+    
+  </div>
+	
+</body>
+</html>

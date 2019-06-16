@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link href="style5.css" rel="stylesheet"/>
+<title>Recherche</title>
+</head>
+<body>
+
+
+<!-- 
+
+    <div class="container">
+        
+        <p>Entrer le titre du livre : </p>
+        <form th:action="@{findLivre}" method="POST">
+
+             <div class="col-md-6 col-sm-6 col-xs-12">
+            
+            <div class="form-group">
+                <label class="control-label"> Titre du livre : </label>
+                <input class="form-control" type="text" name="titre" th:value="${livre.titre}"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary"> Rechercher </button>
+           
+            </div>
+        </form>
+    </div>
+    
+     -->
+    
+    <div class="login-page">
+		<div class="form">
+			<form class="register-form" th:action="@{findLivre}" method="POST">
+				<input type="text" placeholder="titre du livre" name="titre" th:value="${livre.titre}"/>
+				<button>Recherche</button>
+			</form>
+		</div>
+		
+	</div>
+    
+</body>
+</html>

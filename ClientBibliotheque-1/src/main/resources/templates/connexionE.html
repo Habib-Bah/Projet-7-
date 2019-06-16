@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Identification</title>
+
+<link rel="stylesheet" href="style5.css">
+</head>
+<body>
+
+	<div class="login-page">
+		<div class="form">
+			<form class="register-form" th:action="@{loginEmploye}" method="POST">
+				
+				<input type="text" placeholder="email" name="email" th:value="${appuser.email}"/>
+				<input type="text" placeholder="mot de passe" name="encrytedPassword" th:value="${appuser.encrytedPassword}"/>
+				<button>Connexion</button>
+				
+			</form>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

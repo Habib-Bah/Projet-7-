@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Erreur</title>
+<link rel="stylesheet" type="text/css" href="style5.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="script.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Limelight'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lobster'
+	rel='stylesheet' type='text/css'>
+</head>
+<body>
+<h3>Aucun resultat ne correspond à votre recherche.</h3>
+
+<h3>Nouvelle recherche ?
+ <a th:href="@{/Recherche}"> Rechercher un autre livre</a> </h3>
+</body>
+</html>

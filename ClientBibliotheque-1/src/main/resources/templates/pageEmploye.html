@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+        <title>Administration</title>
+        <link rel="stylesheet" type="text/css" href="style6.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Limelight' rel='stylesheet' type='text/css'>
+                <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+                
+                
+
+    </head>
+<header>
+ <h1>Bienvenue sur le pc administrateur</h1>
+</header>
+
+ <section id="buttons-menu">
+            <ul>
+                <li class="button"><a th:href="@{/Utilisateurs}">Utilisateurs</a><br>
+                <p>Selectionner ce lien <br>pour afficher les utilisateurs</p></li>
+                <li class="button"><a th:href="@{/PretEmployee}"> Pret</a><br>
+                <p>Selectionner ce lien <br>pour afficher la liste des prets</p></li>
+                <li class="button"><a th:href="@{/ReservationEmploye}">Reserver</a><br>
+                <p>Selectionner ce lien <br>pour reserver pour un client</p></li>
+                <li class="button"><a th:href="@{/ReservationEmploye}">Prolonger</a><br>
+                <p>Selectionner ce lien <br>pour prolonger un pret</p></li>
+                <li class="button"><a th:href="@{/DeconnectionEmploye}">Quitter</a><br>
+                <p>Selectionner ce lien <br>pour quitter votre bureau</p></li>
+            </ul>
+        </section>
+<body>
+
+</body>
+</html>
