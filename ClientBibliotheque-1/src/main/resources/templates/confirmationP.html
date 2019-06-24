@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Erreur</title>
+<title>Reservation</title>
 <link rel="stylesheet" type="text/css" href="style5.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -12,14 +12,8 @@
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<h1>Attention !!!!!</h1>
-
-	<h3>
-		Vous n'avez pas accès à cette page <br> Veuillez vous connecter à
-		l'aide de ce liens :
-		<p>
-			<a th:href="@{/Connexion}"> Connexion</a>
-		</p>
-	</h3>
+	<h3>Votre pret a été prolongé pour 4 semaines</h3><br>
+	<h3>Consulter vos prets <a th:href="@{/Reservation}">Ici</a></h3>
+	<h3>Retour à l'acceuil <a th:href="@{/acceuil}">Ici</a></h3>
 </body>
 </html>

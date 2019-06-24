@@ -12,14 +12,11 @@
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<h1>Attention !!!!!</h1>
-
-	<h3>
-		Vous n'avez pas accès à cette page <br> Veuillez vous connecter à
-		l'aide de ce liens :
-		<p>
-			<a th:href="@{/Connexion}"> Connexion</a>
-		</p>
-	</h3>
+	<h3>Attention aucune reservation ne correspond à votre entrée.</h3><br>
+	<h3>Veuillez contacter votre bibliothèque ou réessayer à nouveau</h3>
+	
+	<p class="message">
+	<a th:href="@{/Reservation}"> Reservation</a>
+	</p>
 </body>
 </html>

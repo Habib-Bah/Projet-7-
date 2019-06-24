@@ -10,7 +10,45 @@
 <body>
 	<div class="login-page">
 		<div class="form">
-			<form class="register-form" th:action="@{ConfirmRetourDePret}" method="POST">
+			<form class="register-form" th:action="@{SaveRetour}" method="POST">
+			
+			<input type="text" placeholder="Selectionner le titre du livre" name="titrelivre" th:value="${retour.titrelivre}" list="datalist1"/>
+				<datalist id="datalist1">
+				<option value="Les fous du roi">
+				<option value="Là-bas">
+				<option value="Faust">
+				<option value="Un tramway nommé Désir">
+				<option value="La peste">
+				<option value="La vie devant soit">
+				<option value="Cryno de Bergerac">
+				<option value="La metamorphose">
+				<option value="Le seigneur des anneaux">
+				<option value="L'Etranger">
+				<option value="1984">
+				<option value="Lecume des jours">
+				<option value="Jane Eyre">
+				<option value="Mrs Dalloway">
+				<option value="De Sang Froid">
+				<option value="American psycho">
+				<option value="L'univers à portée de main">
+				<option value="Vertige du cosmos">
+				<option value="Liberez votre cerveau">
+				<option value="Tesla L'eclaire du genie">
+				
+				
+				<option value="Un autre regard sur le climat">
+				<option value="E=mc2 L'equation de tous les possibles">
+				<option value="Infravies, le vivant sans frontière">
+				<option value="Singe toi meme">
+				<option value="Les bugs humains">
+				<option value="Les origines de la géometrie">
+				<option value="Quand le cerveau devient masculin">
+				<option value="L'age des low tech">
+				<option value="Comprendre l'intelligence artificielle">
+				<option value="La guerre des intelligences">
+				
+				</option>
+				</datalist>
 				
 				<input type="text" placeholder="email" name="email" th:value="${retour.email}"/>
 				<button>Confirmer</button>

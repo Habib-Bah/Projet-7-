@@ -1,30 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<link href="style.css" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato'
+	rel='stylesheet' type='text/css'>
+<link href="style2.css" rel="stylesheet">
 <title>Recherche livre</title>
 </head>
 <body>
 
-
-	<p>Voici le resultat de votre recherche</p>
-	
 	<section id="possibilités">
 		<div class="conteneur">
 			<article style="background-image: url('article-image-1.jpg')">
 				<div class="pos1">
 					<h4 th:text="${livre.titre}"></h4>
 					<p>
-						<small th:text="${livre.auteur}"> </small> <br> 
-							<small th:text="${livre.nombreexemplaire}">
-							</small>
-						</p>
-						<a th:href="@{/reserver}" class="boutton2"> Reserver </a>
+						<small th:text="${livre.auteur}"> </small> <br> <small
+							th:text="${livre.nombreexemplaire}"> </small>
+					</p>
+					<a th:href="@{/reserver}" class="boutton2"> Reserver </a>
 				</div>
 			</article>
-	
-	</div>
+
+		</div>
+		
 	</section>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+	<section id="recommandations">
+		<div class="container">
+			<div class="red-divider"></div>
+			<div class="heading">
+				
+			</div>
+			<div id="myCarousel" class="carousel slide text-center"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<h3>Je ne trouve pas ce que je cherche</h3>
+						<h4>Je demande à un bibliothécaire</h4>
+					</div>
+					<div class="item">
+						<h3>Un conseil de film ou serie</h3>
+						<h4>Je demande à un bibliothécaire</h4>
+					</div>
+					<div class="item">
+						<h3>Un conseil de livre ou de BD</h3>
+						<h4>Je demande à un bibliothécaire</h4>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#myCarousel"
+					data-slide="prev" role="button"> <span
+					class="glyphicon glyphicon-chevron-left"></span>
+				</a> <a class="right carousel-control" href="#myCarousel"
+					data-slide="next" role="button"> <span
+					class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+
+			</div>
+
+		</div>
+
+
+	</section>
+
 </body>
 </html>

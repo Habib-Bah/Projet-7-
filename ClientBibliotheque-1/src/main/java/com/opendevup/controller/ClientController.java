@@ -18,6 +18,7 @@ import com.opendevup.client.Livre;
 import com.opendevup.client.Reservation;
 import com.opendevup.client2.Pret;
 import com.opendevup.client2.Retour;
+import com.opendevup.client2.Utilisateur;
 import com.opendevup.model.AppUser;
 
 
@@ -147,43 +148,38 @@ public class ClientController {
 		
 	}
 	
-	/*
-	@RequestMapping(value = "/touverpret", method = RequestMethod.GET)
-	public String touverpret(Model model, Reservation r) {
-
-		
-		return "listpret";
-	}
-	*/
 	
-	@RequestMapping(value = "/Recherche", method = RequestMethod.GET)
-	public String Recherche(Model model) {
+	@RequestMapping(value = "/Retour", method = RequestMethod.GET)
+	public String touverpret(Model model) {
 		
-		model.addAttribute("livre", new Livre());
+		model.addAttribute("retour", new Retour());
 		
-		return "recherche";
+		return "RetourDePret";
 	}
 	
-	@RequestMapping(value = "/findLivre", method = RequestMethod.POST)
-	public String findRecherche(Model model, Livre l) {
+	@RequestMapping(value = "/SaveRetour", method = RequestMethod.POST)
+	public String SaveRetour(Model model, Retour r) {
 
 		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
 		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
-		com.opendevup.client2.Livre livre = bib.trouverlivre(l.getTitre());
 		
-		List<com.opendevup.client2.Livre> livres = bib.listedeslivres();
+		java.util.List<Pret> pret = new ArrayList<>();
+		pret = bib.listPret();
 		
-		for(com.opendevup.client2.Livre li : livres) {
-			if(li.getTitre().equalsIgnoreCase(livre.getTitre())) {
-				model.addAttribute(livre);
-				return "resultatRechecheLivre";
-			}
+		for(Pret p : pret) {
 			
+			if(p.getEmail().equalsIgnoreCase(r.getEmail()) && p.getTitrelivre().equalsIgnoreCase(r.getTitrelivre())) {
+				bib.retour(r.getEmail(), r.getTitrelivre());
+				
+				return "confirmRetour";
+			}
 		}
 		
-		return "pasDeResultatDelaRecherhceDeLivre";
+		return "erreurRetour";
+		
 		
 	}
+	
 	
 	@RequestMapping(value = "/Sport")
 	public String Sport(Model model) {
@@ -202,6 +198,12 @@ public class ClientController {
 	public String listeL(Model model) {
 
 		return "index";
+	}
+	
+	@RequestMapping(value = "/acceuil")
+	public String acceuil(Model model) {
+
+		return "listeL";
 	}
 	
 	@RequestMapping(value = "/RetourDePret", method = RequestMethod.GET)
@@ -245,16 +247,82 @@ public class ClientController {
 		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
 		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
 		
-		String pattern = "MM/dd/yyyy";
+		List <Pret> prets = new ArrayList();
+		List <Utilisateur> users = new ArrayList();
+		List <Livre> livre = new ArrayList();
+		
+		prets = bib.listPret();
+		users = bib.listUser();
+		
+		
+		for(Pret p : prets) {
+			
+			if(p.getEmail().equalsIgnoreCase(r.getEmail()) && p.getTitrelivre().equalsIgnoreCase(r.getTitrelivre())) {
+				
+				return "LivreDejaReserve";
+			}
+		}
+		
+	
+		
+		for(Utilisateur u : users) {
+			
+			if(u.getEmail().equalsIgnoreCase(r.getEmail())) {
+				String pattern = "dd/MM/yyyy";
+				DateFormat df = new SimpleDateFormat(pattern);
+				Date today = Calendar.getInstance().getTime();
+				String datedebut = df.format(today);
+				today.setMonth(today.getMonth() + 1);
+				String datefin = df.format(today);
+				
+				bib.reservation(r.getNomutilisateur(), r.getPrenom(), r.getTitrelivre(), datedebut , datefin, r.getEmail());
+				return "ConfReser";
+			}
+		}
+		
+		return"noEmail";
+		
+	}
+	
+	
+	@RequestMapping(value = "/Prolonger", method = RequestMethod.GET)
+	public String Prolonger(Model model) {
+
+		model.addAttribute("reservation", new Reservation());
+		return "prolonger";
+	}
+	
+	@RequestMapping(value = "/CProlonger", method = RequestMethod.POST)
+	public String CProlonger(Model model, Reservation r) {
+		
+		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
+		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		
+		List <Pret> prets = new ArrayList();
+		List <Utilisateur> users = new ArrayList();
+		
+		prets = bib.listPret();
+		users = bib.listUser();
+		
+		String pattern = "dd/MM/yyyy";
 		DateFormat df = new SimpleDateFormat(pattern);
 		Date today = Calendar.getInstance().getTime();
 		String datedebut = df.format(today);
 		today.setMonth(today.getMonth() + 1);
 		String datefin = df.format(today);
 		
-		bib.reservation(r.getNomutilisateur(), r.getPrenom(), r.getTitrelivre(), datedebut , datefin, r.getEmail());
 		
-		return "ConfReser";
+		for(Pret p : prets) {
+			
+			if(p.getEmail().equalsIgnoreCase(r.getEmail()) && p.getTitrelivre().equalsIgnoreCase(r.getTitrelivre())) {
+				
+				bib.retour(r.getEmail(), r.getTitrelivre());
+				bib.reservation(r.getNomutilisateur(), r.getPrenom(), r.getTitrelivre(), datedebut, datefin, r.getEmail());
+				return "confirmationP";
+			}
+		}
+		
+		return "mauvaisEMail";
 		
 	}
 }

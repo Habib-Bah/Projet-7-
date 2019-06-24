@@ -5,16 +5,14 @@
 <link href="style5.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-<title>Reservations</title>
+<title>Retour de pret</title>
 </head>
 <body>
-
-	 <div class="login-page">
+	<div class="login-page">
 		<div class="form">
-			<form class="register-form" th:action="@{SaveRE}" method="POST">
+			<form class="register-form" th:action="@{SaveRetourE}" method="POST">
 			
-							
-				<input type="text" placeholder="titre du livre" name="titrelivre" th:value="${reservation.titrelivre}" list="datalist1"/>
+			<input type="text" placeholder="Selectionner le titre du livre" name="titrelivre" th:value="${retour.titrelivre}" list="datalist1"/>
 				<datalist id="datalist1">
 				<option value="Les fous du roi">
 				<option value="Là-bas">
@@ -49,17 +47,14 @@
 				<option value="Comprendre l'intelligence artificielle">
 				<option value="La guerre des intelligences">
 				
-				
+				</option>
 				</datalist>
-				<input type="text" placeholder="nom" name="nomutilisateur" th:value="${reservation.nomutilisateur}"/>
-				<input type="text" placeholder="prenom" name="prenom" th:value="${reservation.prenom}"/>
-				<input type="text" placeholder="email" name="email" th:value="${reservation.email}"/>
 				
-            <button>Reserver</button>
+				<input type="text" placeholder="email" name="email" th:value="${retour.email}"/>
+				<button>Confirmer</button>
 			</form>
 		</div>
 		
 	</div>
-
 </body>
 </html>
