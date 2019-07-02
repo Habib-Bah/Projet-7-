@@ -43,9 +43,10 @@ public class LivreController {
 	@RequestMapping(value = "/findLivre", method = RequestMethod.POST)
 	public String findRecherche(Model model, Livre l) {
 
+		
+		
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
-		
 
 		List<Livre> livres = bib.listedeslivres();
 		
