@@ -1,0 +1,9 @@
+com/oc/ws/dao/LivreDaoImp.class
+com/oc/ws/dao/LivreDao.class
+com/oc/ws/config/AppConfig.class
+com/oc/ws/MainApp.class
+com/oc/ws/wsService/Bibliotheque.class
+com/oc/ws/service/LivreServiceImp.class
+com/oc/ws/service/LivreService.class
+com/oc/ws/entity/Livre.class
+com/oc/ws/config/Configuration.class
