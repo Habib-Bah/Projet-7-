@@ -8,7 +8,4 @@ public interface LivreService {
 
     void add(Livre livre);
 
-    List<Livre> listLivres();
-
-    Livre trouverlivre(String titrelivre);
 }

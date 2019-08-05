@@ -12,14 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.opendevup.client.BibliotequeVilleWS;
-import com.opendevup.client.BibliothequeService;
-import com.opendevup.client.Livre;
-import com.opendevup.client.Reservation;
-import com.opendevup.client2.Pret;
-import com.opendevup.client2.Retour;
-import com.opendevup.client2.Utilisateur;
 import com.opendevup.model.AppUser;
+
+import client.BibliotequeVilleWS;
+import client.BibliothequeService;
+import client.IOException_Exception;
+import client.Livre;
+import client.Pret;
+import client.Reservation;
+import client.Retour;
+import client.Utilisateur;
 
 
 @Controller
@@ -33,7 +35,7 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(Model model, AppUser u) {
+	public String save(Model model, AppUser u) throws IOException_Exception {
 
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -51,7 +53,7 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model, AppUser u) {
+	public String login(Model model, AppUser u) throws IOException_Exception {
 
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -74,7 +76,7 @@ public class ClientController {
 	
 	
 	@RequestMapping(value = "/ListeL", method = RequestMethod.GET)
-	public String ListeL(Model model) {
+	public String ListeL(Model model) throws IOException_Exception {
 		
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -117,11 +119,12 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/findReservation", method = RequestMethod.POST)
-	public String findReservation(Model model, Reservation r) {
+	public String findReservation(Model model, Reservation r) throws IOException_Exception {
 
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		client.BibliothequeService livreS = new client.BibliothequeService();
+		client.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
 	
+		
 		
 		java.util.List<Pret> pret = new ArrayList<>();
 		pret = bib.listPret();
@@ -143,7 +146,10 @@ public class ClientController {
 		}
 		
 		model.addAttribute("prets", prets);
+		
 		return "resultReservation";
+		
+		
 
 		
 	}
@@ -158,10 +164,11 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/SaveRetour", method = RequestMethod.POST)
-	public String SaveRetour(Model model, Retour r) {
+	public String SaveRetour(Model model, Retour r) throws IOException_Exception {
 
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		
+		client.BibliothequeService livreS = new client.BibliothequeService();
+		client.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
 		
 		java.util.List<Pret> pret = new ArrayList<>();
 		pret = bib.listPret();
@@ -174,6 +181,8 @@ public class ClientController {
 				return "confirmRetour";
 			}
 		}
+		
+		
 		
 		return "erreurRetour";
 		
@@ -217,10 +226,10 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/ConfirmRetourDePret", method = RequestMethod.POST)
-	public String ConfirmRetourDePret(Model model, Retour r) {
+	public String ConfirmRetourDePret(Model model, Retour r) throws IOException_Exception {
 		
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		client.BibliothequeService livreS = new client.BibliothequeService();
+		client.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
 		bib.retour(r.getEmail(), r.getTitrelivre());
 		
 		return "ConfirmRetourDePret";
@@ -228,7 +237,7 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/reserver", method = RequestMethod.GET)
-	public String reserver(Model model) {
+	public String reserver(Model model) throws IOException_Exception {
 		
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -242,10 +251,12 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/CReserver", method = RequestMethod.POST)
-	public String CReserver(Model model, Reservation r) {
+	public String CReserver(Model model, Reservation r) throws IOException_Exception {
 		
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		client.BibliothequeService livreS = new client.BibliothequeService();
+		client.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		
+		
 		
 		List <Pret> prets = new ArrayList();
 		List <Utilisateur> users = new ArrayList();
@@ -280,6 +291,7 @@ public class ClientController {
 			}
 		}
 		
+		
 		return"noEmail";
 		
 	}
@@ -293,10 +305,11 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/CProlonger", method = RequestMethod.POST)
-	public String CProlonger(Model model, Reservation r) {
+	public String CProlonger(Model model, Reservation r) throws IOException_Exception {
 		
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		client.BibliothequeService livreS = new client.BibliothequeService();
+		client.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		
 		
 		List <Pret> prets = new ArrayList();
 		List <Utilisateur> users = new ArrayList();
@@ -321,6 +334,7 @@ public class ClientController {
 				return "confirmationP";
 			}
 		}
+		
 		
 		return "mauvaisEMail";
 		

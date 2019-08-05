@@ -1,232 +1,357 @@
 package com.oc.ws.wsService;
 
-
 import com.oc.ws.config.AppConfig;
+import com.oc.ws.config.*;
 import com.oc.ws.entity.Livre;
 import com.oc.ws.entity.Pret;
 import com.oc.ws.entity.Reservation;
 import com.oc.ws.entity.Utilisateur;
 import com.oc.ws.service.LivreService;
-import com.oc.ws.service.PretService;
-import com.oc.ws.service.ReservationService;
 import com.oc.ws.service.UtilisateurService;
+
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebService(name = "BibliotequeVilleWS")
 public class Bibliotheque {
 
-    List<Livre> livres = new ArrayList<>();
-    List<Utilisateur> utilisateurs = new ArrayList<>();
-    List<Reservation> listreservation = new ArrayList<>();
+	List<Livre> livres = new ArrayList<>();
+	List<Utilisateur> utilisateurs = new ArrayList<>();
+	List<Reservation> listreservation = new ArrayList<>();
 
+	Connection connection;
+	Statement statement;
+	ResultSet result;
 
-    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    LivreService livreService = context.getBean(LivreService.class);
-    ReservationService reservationService = context.getBean(ReservationService.class);
-    UtilisateurService utilisateurService = context.getBean(UtilisateurService.class);
-    PretService pretService = context.getBean(PretService.class);
+	LivreService livreService = context.getBean(LivreService.class);
+	// ReservationService reservationService =
+	// context.getBean(ReservationService.class);
+	UtilisateurService utilisateurService = context.getBean(UtilisateurService.class);
+	// PretService pretService = context.getBean(PretService.class);
 
-    @WebMethod(operationName = "Listedeslivres")
-    public List<Livre> getLivre() throws IOException {
+	@WebMethod(operationName = "inscription")
+	public void inscription(@WebParam(name = "nom") String nom, @WebParam(name = "prenom") String prenom,
+			@WebParam(name = "email") String email, @WebParam(name = "motdepasse") String motdepasse)
+			throws IOException {
 
-        try {
+		try {
 
-            livres = livreService.listLivres();
+			Utilisateur utilisateur = new Utilisateur(nom, prenom, motdepasse, email);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			utilisateurService.add(utilisateur);
 
-        return livres;
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+	}
+	
+	@WebMethod(operationName = "connexionEquipe")
+	public boolean connexionEquipe(@WebParam(name = "email") String email,
+			@WebParam(name = "motdepasse") String motdepasse) throws IOException {
 
-    @WebMethod(operationName = "reservation")
-    public void pret(@WebParam(name = "Nomutilisateur") String nomutilisateur, @WebParam(name = "prenom") String prenom,
-                     @WebParam(name = "titrelivre") String titrelivre, @WebParam(name = "datedebut") String datedebut,
-                     @WebParam(name = "datefin") String datefin, @WebParam(name = "email") String email) throws IOException {
+		boolean res = true;
 
-        try {
+		try {
 
-            Reservation reservation = new Reservation();
+			Utilisateur utilisateur = utilisateurService.connexion(email, motdepasse);
 
-            reservation.setDatedebut(datedebut);
-            reservation.setDatefin(datefin);
-            reservation.setEmail(email);
-            reservation.setNomutilisateur(nomutilisateur);
-            reservation.setPrenom(prenom);
-            reservation.setTitrelivre(titrelivre);
+			if (utilisateurs != null) {
 
-            reservationService.add(reservation);
+				return "admin".equalsIgnoreCase(utilisateur.getRole());
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 
-    }
 
-    @WebMethod(operationName = "USerReservation")
-    public List USerReservation(@WebParam(name = "email") String email) throws IOException {
+	@WebMethod(operationName = "Listedeslivres")
+	public List<Livre> getLivre() throws IOException {
 
-        try {
-            listreservation = reservationService.listReservationsUser(email);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		Configuration conf = new Configuration();
 
-        return listreservation;
-    }
+		try {
 
+			Class.forName("org.postgresql.Driver").newInstance();
+			// connection =
+			// DriverManager.getConnection("jdbc:postgresql://localhost:5432/bibliotheque");
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+			statement = connection.prepareStatement("select * from livre");
 
-    @WebMethod(operationName = "inscription")
-    public void inscription(@WebParam(name = "nom") String nom, @WebParam(name = "prenom") String prenom,
-                            @WebParam(name = "email") String email, @WebParam(name = "motdepasse") String motdepasse) throws IOException {
+			statement = connection.createStatement();
+			result = statement.executeQuery("select * from livre");
 
-        try {
+			while (result.next()) {
 
-            Utilisateur utilisateur = new Utilisateur(nom, prenom, motdepasse, email);
+				String auteur = result.getString(2);
+				String titre = result.getString(3);
+				int nombredepages = result.getInt(4);
+				int nombreexemplaire = result.getInt(5);
+				String categorie = result.getString(6);
 
-            utilisateurService.add(utilisateur);
+				Livre l = new Livre();
+				l.setAuteur(auteur);
+				l.setTitre(titre);
+				l.setNombredepage(nombredepages);
+				l.setNombreexemplaire(nombreexemplaire);
+				l.setCategorie(categorie);
+				livres.add(l);
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    }
+		return livres;
+	}
 
-    @WebMethod(operationName = "connexion")
-    public boolean connexion(@WebParam(name = "email") String email, @WebParam(name = "motdepasse") String motdepasse) throws IOException {
+	@WebMethod(operationName = "reservation")
+	public void pret(@WebParam(name = "Nomutilisateur") String nomutilisateur, @WebParam(name = "prenom") String prenom,
+			@WebParam(name = "titrelivre") String titrelivre, @WebParam(name = "datedebut") String datedebut,
+			@WebParam(name = "datefin") String datefin, @WebParam(name = "email") String email) throws IOException {
 
-        boolean res = false;
-        try {
+		Configuration conf = new Configuration();
 
-            Utilisateur connexion = utilisateurService.connexion(email, motdepasse);
+		try {
 
-            if(connexion != null ) res = true;
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+			statement = connection.createStatement();
+			String sql = "insert into reservation (nomutilisateur, prenom, titrelivre, datedebut, datefin, email) values ( '"
+					+ nomutilisateur + "', '" + prenom + "' ,'" + titrelivre + "', '" + datedebut + "', '" + datefin
+					+ "','" + email + "')";
+			statement.executeQuery(sql);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return res; 
-        
-        
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+	}
 
+	@WebMethod(operationName = "USerReservation")
+	public List USerReservation(@WebParam(name = "email") String email) throws IOException {
 
-    @WebMethod(operationName = "prolongerpret")
-    public void prolongerPret(@WebParam(name = "nom") String nomutilisateur, @WebParam(name = "prenom") String prenom,
-                              @WebParam(name = "titrelivre") String titrelivre, @WebParam(name = "datedebut") String datedebut,
-                              @WebParam(name = "datefin") String datefin, @WebParam(name = "email") String email) throws IOException {
+		// List<Reservation> listreservation = new ArrayList<>();
+		Configuration conf = new Configuration();
 
+		try {
 
-        try {
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+			statement = connection.createStatement();
+			String sql = "(select * from reservation where email = '" + email + "')";
+			result = statement.executeQuery(sql);
 
-            Reservation reservation = new Reservation();
+			while (result.next()) {
+				if (result.getString(7).equalsIgnoreCase(email)) {
+					Reservation r = new Reservation();
+					r.setNomutilisateur(result.getString(2));
+					r.setPrenom(result.getString(3));
+					r.setTitrelivre(result.getString(4));
+					r.setDatedebut(result.getString(5));
+					r.setDatefin(result.getString(6));
+					r.setEmail(email);
 
-            reservation.setDatedebut(datedebut);
-            reservation.setDatefin(datefin);
-            reservation.setEmail(email);
-            reservation.setNomutilisateur(nomutilisateur);
-            reservation.setPrenom(prenom);
-            reservation.setTitrelivre(titrelivre);
+					listreservation.add(r);
 
-            reservationService.add(reservation);
+				}
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    }
+		return listreservation;
+	}
 
+	@WebMethod(operationName = "connexion")
+	public boolean connexion(@WebParam(name = "email") String email, @WebParam(name = "motdepasse") String motdepasse)
+			throws IOException {
 
-    @WebMethod(operationName = "trouverlivre")
-    public Livre trouverlivre(@WebParam(name = "titrelivre") String titrelivre) throws IOException {
+		boolean res = false;
+		Configuration conf = new Configuration();
 
-        Livre l = new Livre();
+		try {
 
-        try {
-
-            l = livreService.trouverlivre(titrelivre);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return l;
-    }
-
-
-
-    @WebMethod(operationName = "listUser")
-    public List<Utilisateur> listUser() throws IOException {
-        List<Utilisateur> listUser = new ArrayList<>();
-
-        try {
-           listUser =  utilisateurService.listUtilisateurs();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listUser;
-    }
-
-
-    @WebMethod(operationName = "connexionEquipe")
-    public boolean connexionEquipe(@WebParam(name = "email") String email,
-                                   @WebParam(name = "motdepasse") String motdepasse) throws IOException {
-
-        boolean res = true;
-
-        try {
-
-            Utilisateur utilisateurs = utilisateurService.connexion(email, motdepasse);
-
-            if(utilisateurs != null){
-
-                return "admin".equalsIgnoreCase(utilisateurs.getRole());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
-
-    @WebMethod(operationName = "ListPret")
-    public List<Pret> ListPret() throws IOException {
-        List<Pret> prets = new ArrayList();
-
-        try {
-
-            pretService.listPrets();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return prets;
-    }
-
-
-    @WebMethod(operationName = "Retour")
-    public void Retour(@WebParam(name = "email") String email, @WebParam(name = "titrelivre") String titrelivre) throws IOException {
-
-        try {
-
-            Reservation reservation = reservationService.retour(email, titrelivre);
-
-            reservationService.delete(reservation);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+
+			statement = connection.createStatement();
+			String sql = "select * from utilisateur";
+			result = statement.executeQuery(sql);
+
+			while (result.next()) {
+
+				if ((result.getString(1).equalsIgnoreCase(email))
+						&& (result.getString(3).equalsIgnoreCase(motdepasse))) {
+					res = true;
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+
+	}
+
+	@WebMethod(operationName = "prolongerpret")
+	public void prolongerPret(@WebParam(name = "nom") String nomutilisateur, @WebParam(name = "prenom") String prenom,
+			@WebParam(name = "titrelivre") String titrelivre, @WebParam(name = "datedebut") String datedebut,
+			@WebParam(name = "datefin") String datefin, @WebParam(name = "email") String email) throws IOException {
+
+		List<Reservation> listreservation = new ArrayList<>();
+		Reservation reservation = new Reservation(nomutilisateur, prenom, titrelivre, datedebut, datefin, email);
+		listreservation.add(reservation);
+
+		Configuration conf = new Configuration();
+		try {
+
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+			statement = connection.createStatement();
+
+			String sql1 = "delete from reservation where email like '" + email + "' and titrelivre like '" + titrelivre
+					+ "'";
+			statement.executeQuery(sql1);
+
+			String sql = "insert into reservation (nomutilisateur, prenom, titrelivre, datedebut, datefin, email) values ( '"
+					+ nomutilisateur + "', '" + prenom + "' '" + titrelivre + "', '" + datedebut + "', '" + datefin
+					+ "', '" + email + "')";
+			statement.executeQuery(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@WebMethod(operationName = "trouverlivre")
+	public Livre trouverlivre(@WebParam(name = "titrelivre") String titrelivre) throws IOException {
+
+		Livre l = new Livre();
+		Configuration conf = new Configuration();
+
+		try {
+
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+			statement = connection.createStatement();
+			String sql = "select * from livre";
+			result = statement.executeQuery(sql);
+
+			while (result.next()) {
+				if (result.getString(3).equalsIgnoreCase(titrelivre)) {
+					l.setTitre(titrelivre);
+					l.setNombreexemplaire(result.getInt(5));
+					l.setNombredepage(result.getInt(4));
+					l.setAuteur(result.getString(2));
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return l;
+	}
+
+	@WebMethod(operationName = "listUser")
+	public List<Utilisateur> listUser() throws IOException {
+		List<Utilisateur> listUser = new ArrayList<>();
+		Configuration conf = new Configuration();
+
+		try {
+
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+			statement = connection.createStatement();
+			String sql = "select * from utilisateur";
+			result = statement.executeQuery(sql);
+
+			while (result.next()) {
+				Utilisateur u = new Utilisateur();
+				u.setNom(result.getString(4));
+				u.setPrenom(result.getString(5));
+				u.setEmail(result.getString(1));
+				u.setMotdepasse(result.getString(3));
+				u.setRole(result.getString(6));
+				listUser.add(u);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listUser;
+	}
+
+	
+	@WebMethod(operationName = "ListPret")
+	public List<Pret> ListPret() throws IOException {
+		List<Pret> prets = new ArrayList();
+		Configuration conf = new Configuration();
+
+		try {
+
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+
+			statement = connection.createStatement();
+			String sql = "select * from reservation";
+			result = statement.executeQuery(sql);
+
+			while (result.next()) {
+				Pret p = new Pret();
+				p.setNomutilisateur(result.getString(2));
+				p.setPrenom(result.getString(3));
+				p.setTitrelivre(result.getString(4));
+				p.setDatedebut(result.getString(5));
+				p.setDatefin(result.getString(6));
+				p.setEmail(result.getString(7));
+				prets.add(p);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return prets;
+	}
+
+	@WebMethod(operationName = "Retour")
+	public void Retour(@WebParam(name = "email") String email, @WebParam(name = "titrelivre") String titrelivre)
+			throws IOException {
+
+		Configuration conf = new Configuration();
+		try {
+
+			Class.forName("org.postgresql.Driver").newInstance();
+			connection = DriverManager.getConnection(conf.getMotDepasse());
+
+			statement = connection.createStatement();
+
+			String sql = "delete from reservation where titrelivre like '" + titrelivre + "' and email like '" + email
+					+ "'";
+			statement.executeQuery(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }

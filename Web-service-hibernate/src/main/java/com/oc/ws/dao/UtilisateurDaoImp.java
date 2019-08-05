@@ -31,11 +31,21 @@ public class UtilisateurDaoImp implements UtilisateurDao {
 
    @Override
    public Utilisateur connexion(String email, String motdepasse) {
-      String sql = "select * from utilisateurs where email='"+email+"' and motdepasse='"+motdepasse+"'";
+      String sql = "select * from utilisateur where email='"+email+"' and motdepasse='"+motdepasse+"'";
       CriteriaQuery<Utilisateur> criteriaQuery = em.getCriteriaBuilder().createQuery(Utilisateur.class);
       @SuppressWarnings("unused")
       Root<Utilisateur> root = criteriaQuery.from(Utilisateur.class);
       return (Utilisateur) em.createNativeQuery(sql, Utilisateur.class).getSingleResult();
+	   
+	  /* Utilisateur u = new Utilisateur();
+	   u.setEmail("emailtest");
+	   u.setMotdepasse("1111");
+	   u.setId(100);
+	   u.setNom("uTest");
+	   
+	   return u;
+	   
+	   */
    }
 
 }

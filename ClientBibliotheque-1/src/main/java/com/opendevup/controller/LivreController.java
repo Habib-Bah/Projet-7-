@@ -4,11 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import java.util.List;
 
-import com.opendevup.client2.BibliotequeVilleWS;
-import com.opendevup.client2.BibliothequeService;
-import com.opendevup.client2.Livre;
+import client.BibliotequeVilleWS;
+import client.BibliothequeService;
+import client.IOException_Exception;
+import client.Livre;
+
+import java.util.List;
 
 @Controller
 public class LivreController {
@@ -41,7 +43,7 @@ public class LivreController {
 	}
 
 	@RequestMapping(value = "/findLivre", method = RequestMethod.POST)
-	public String findRecherche(Model model, Livre l) {
+	public String findRecherche(Model model, Livre l) throws IOException_Exception {
 
 		
 		

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<link href="style5.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 <title>Reservation</title>
+<link rel="stylesheet" type="text/css" href="style5.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="script.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Limelight'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lobster'
+	rel='stylesheet' type='text/css'>
 </head>
 <body>	
-		<h2>Votre reservation a été enregistré avec succès.<br>
+		<h3>Votre reservation a été enregistré avec succès.<br>
 		   Vous pouvez allez chercher votre livre.
 			Vous pouvez consulter vos reservations ici :
 			<a th:href="@{/Reservation}"> Vos reservations</a>
-		</h2>
+		</h3>
 </body>
 </html>

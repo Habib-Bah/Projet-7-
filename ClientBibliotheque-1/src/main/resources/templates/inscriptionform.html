@@ -12,7 +12,7 @@
 		<div class="form">
 			<form class="register-form" th:action="@{save}" method="POST">
 				<input type="text" placeholder="nom" name="userName" th:value="${appuser.userName}"/>
-				<input type="text" placeholder="prenom" nname="prenom" th:value="${appuser.prenom}"/>
+				<input type="text" placeholder="prenom" name="prenom" th:value="${appuser.prenom}"/>
 				<input type="text" placeholder="email" name="email" th:value="${appuser.email}"/>
 				<input type="text" placeholder="mot de passe" name="encrytedPassword" th:value="${appuser.encrytedPassword}"/>
 				<button>Inscription</button>

@@ -20,20 +20,5 @@ public class LivreServiceImp implements LivreService {
     public void add(Livre livre) {
         livreDao.add(livre);
     }
-    @Transactional(readOnly = true)
-    public List<Livre> listLivres() {
-        return livreDao.listLivres();
-    }
-
-    @Override
-    public Livre trouverlivre(String titrelivre) {
-        List<Livre> livreList = livreDao.trouverlivre(titrelivre);
-
-        for(Livre livre : livreList){
-            if(livre.getTitre().equalsIgnoreCase(titrelivre)) return livre;
-        }
-
-        return null;
-    }
-
+   
 }

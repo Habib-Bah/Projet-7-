@@ -1,6 +1,5 @@
 package com.opendevup.controller;
 
-import java.awt.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,19 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.opendevup.client2.BibliotequeVilleWS;
-import com.opendevup.client2.BibliothequeService;
-import com.opendevup.client2.Pret;
-import com.opendevup.client2.Reservation;
-import com.opendevup.client2.Retour;
 import com.opendevup.model.AppUser;
-import com.opendevup.client2.Utilisateur;;
+
+import client.BibliotequeVilleWS;
+import client.BibliothequeService;
+import client.IOException_Exception;
+import client.Pret;
+import client.Reservation;
+import client.Retour;
+import client.Utilisateur;;
 
 @Controller
 public class EmployeController {
 
 	@RequestMapping(value = "/Utilisateurs")
-	public String Utilisateurs(Model model) {
+	public String Utilisateurs(Model model) throws IOException_Exception {
 
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -52,7 +53,7 @@ public class EmployeController {
 	}
 
 	@RequestMapping(value = "/loginEmploye", method = RequestMethod.POST)
-	public String loginEmploye(Model model, AppUser u) {
+	public String loginEmploye(Model model, AppUser u) throws IOException_Exception {
 
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -81,7 +82,7 @@ public class EmployeController {
 	}
 
 	@RequestMapping(value = "/PretEmployee")
-	public String PretEmployee(Model model) {
+	public String PretEmployee(Model model) throws IOException_Exception {
 
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -90,6 +91,8 @@ public class EmployeController {
 		pret = bib.listPret();
 
 		model.addAttribute("listprets", pret);
+		
+	
 		return "PretEmployee";
 	}
 
@@ -101,11 +104,12 @@ public class EmployeController {
 	}
 
 	@RequestMapping(value = "/SaveRetourE", method = RequestMethod.POST)
-	public String SaveRetourE(Model model, Retour r) {
+	public String SaveRetourE(Model model, Retour r) throws IOException_Exception {
 
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		BibliothequeService livreS = new BibliothequeService();
+		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
 
+		
 		java.util.List<Pret> pret = new ArrayList<>();
 		pret = bib.listPret();
 
@@ -117,6 +121,7 @@ public class EmployeController {
 				return "SaveRetourE";
 			}
 		}
+
 
 		return "erreurRetourE";
 
@@ -136,7 +141,7 @@ public class EmployeController {
 	}
 
 	@RequestMapping(value = "/SaveRE")
-	public String SaveRE(Model model, Reservation r) {
+	public String SaveRE(Model model, Reservation r) throws IOException_Exception  {
 
 		BibliothequeService livreS = new BibliothequeService();
 		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
@@ -161,10 +166,11 @@ public class EmployeController {
 	}
 	
 	@RequestMapping(value = "/EProlonger", method = RequestMethod.POST)
-	public String EProlonger(Model model, Reservation r) {
+	public String EProlonger(Model model, Reservation r) throws IOException_Exception {
 		
-		com.opendevup.client2.BibliothequeService livreS = new com.opendevup.client2.BibliothequeService();
-		com.opendevup.client2.BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		BibliothequeService livreS = new BibliothequeService();
+		BibliotequeVilleWS bib = livreS.getBibliotequeVilleWSPort();
+		
 		
 		java.util.List <Pret> prets = new ArrayList();
 		java.util.List <Utilisateur> users = new ArrayList();
@@ -189,6 +195,8 @@ public class EmployeController {
 				return "confirmationPE";
 			}
 		}
+		
+		
 		
 		return "mauvaisEMailE";
 		
